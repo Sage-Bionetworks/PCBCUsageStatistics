@@ -1,3 +1,16 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r include=FALSE, eval=FALSE, echo=FALSE}
+synapseClient::synapseLogin()
+knit2synapse::storeAndKnitToFileEntity("./downloads.Rmd", 
+                                       parentId = "syn4892835", 
+                                       fileName = "Downloads")
+```
+
 ```{r libs, echo=FALSE, warning=FALSE, message=FALSE}
 library(plyr)
 library(dplyr)
