@@ -165,11 +165,13 @@ plotdata <- perdayCount %>%
   dplyr::rename(group=variable, n=value)
 
 p <- ggplot(plotdata, aes(x=date, y=n)) + geom_line(aes(group=group, color=group), size=1)
-p <- p + scale_x_date(breaks = "1 week", minor_breaks = "1 day",
-                      #labels = date_format("%b %Y"),
-                      limits = c(as.Date(beginDate), as.Date(endDate)))
+# p <- p + scale_x_date(breaks = "1 week", minor_breaks = "1 day",
+#                       #labels = date_format("%b %Y"),
+#                       limits = c(as.Date(beginDate), as.Date(endDate)))
+p <- p + scale_color_brewer(palette = "Set1")
 p  <- p + mytheme + theme(axis.title.x=element_blank(),
-                          axis.text.x=element_text(size=16, angle=270))
+                          axis.text.x=element_text(size=16, angle=270),
+                          legend.position='top')
 p
 ```
 ```{r include=TRUE, eval=TRUE}
@@ -192,9 +194,9 @@ plotdata <- data.downloads %>%
   ungroup()
 
 p <- ggplot(plotdata, aes(x=date, y=n, color=group)) + geom_point(size=3, position = position_jitter(w = 0, h = 0.1))
-p <- p + scale_x_date(breaks = "1 week", minor_breaks = "1 day",
-                      # labels = date_format("%b %Y"),
-                      limits = c(as.Date(beginDate), as.Date(endDate)))
+# p <- p + scale_x_date(breaks = "1 week", minor_breaks = "1 day",
+#                       # labels = date_format("%b %Y"),
+#                       limits = c(as.Date(beginDate), as.Date(endDate)))
 p <- p + scale_color_brewer(palette = "Set1")
 p <- p + scale_y_log10()
 p  <- p + labs(y=expression(log[10]("access per user")), x="Day")
@@ -220,6 +222,7 @@ plotdata <- data.downloads %>%
 pUser <- ggplot(plotdata, aes(x=username, y=n)) 
 pUser <- pUser + geom_point(aes(color=group), size=3)
 pUser <- pUser + scale_y_log10()
+pUser <- pUser + scale_color_brewer(palette = "Set1")
 pUser <- pUser + mytheme + theme(axis.text.x=element_blank())
 pUser <- pUser + labs(x="User")
 pUser
