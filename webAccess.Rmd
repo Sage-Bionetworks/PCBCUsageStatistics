@@ -25,6 +25,7 @@ library(synapseClient)
 library(RMySQL)
 library(yaml)
 library(lubridate)
+library(reshape2)
 
 synapseLogin()
 
